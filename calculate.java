@@ -1,34 +1,33 @@
-/**
-*@author leokikuta
-*@version int -> BigInteger 
- */
-
-
 import java.math.BigInteger;
-//バイト数の問題でBigIntegerを採用
 
+/**
+* 計算処理のみに関心を持ったクラス
+*/
 public class Calculate{
 
-    public static BigInteger zero = BigInteger.valueOf(0);
-    public static BigInteger second = BigInteger.valueOf(2);
-    //奇数判定を実施
+    public static final BigInteger second = BigInteger.valueOf(2);
+
+    /**
+    * 偶数判定
+    * @param BigInteger 入力値
+    * @return true:偶数 false:奇数
+    */
     public static boolean isEvenValue(BigInteger figure){
-    BigInteger Answer = figure.remainder(second);
-        if(Answer == zero){
-            return true;
-        }
-        return false;
+        BigInteger Answer = figure.remainder(second);
+        return Answer.equals(BigInteger.ZERO);
     }
 
-    public static String add(BigInteger x, BigInteger y)
+    /**
+    * 加算処理
+    * @param BigInteger x コマンドラインの1つ目の入力値
+    * @param BigInteger y コマンドラインの2つ目の入力値
+    * @return 入力値の総和
+    */
+    public static BigInteger add(BigInteger x, BigInteger y)
     {
-        BigInteger sum = x.add(y);
-        if(x == zero && y == zero){
+        if(x.equals(BigInteger.ZERO) && y.equals(BigInteger.ZERO)){
             throw new IllegalArgumentException();      
-        } else if(isEvenValue(sum)){
-            return "偶数";
-        } else {
-            return "奇数";
         }
+        return x.add(y);
     }
 }   
